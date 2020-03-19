@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.lc.entity2.Role" table="role2">
+		<id name="role_id" column="role_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="role_name" column="role_name"></property>
+		<property name="role_memo" column="role_memo"></property>
+		
+		<set name="setUser" table="user_role">
+			<key column="roleId"></key>
+			<many-to-many class="com.lc.entity2.User" column="userId"></many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

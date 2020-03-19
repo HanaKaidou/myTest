@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.lc.entity.Customer" table="customer">
+<id name="cid" column="cid">
+	<generator class="native"></generator>
+</id>
+<property name="custName" column="custName"></property>
+<property name="custLevel" column="custLevel"></property>
+<property name="custSource" column="custSource"></property>
+<property name="custPhone" column="custPhone"></property>
+<property name="custMobile" column="custMobile"></property>
+<!-- inverse="true" 放弃对外键的维护-->
+<!-- cascade="save-update"  一对多中设置在一上的级联操作，有了这个配置，代码中只需要保存一，就会把多的值也级联保存 -->
+<!-- fetch="select"  -->
+<!-- lazy="extra"  默认为true（懒加载，加载所有的字段的值），其他值还有false（立即加载） extra（极其懒惰，只加载需要的字段值）-->
+<!-- batch-size="10" 值不固定，根据业务性需要，大的sql就越少 -->
+<set name="setLinkMan" inverse="true" cascade="all" batch-size="10"> 
+	<key column="clid"></key>
+	<one-to-many class="com.lc.entity.LinkMan"/>
+</set>
+
+</class>
+
+</hibernate-mapping>
